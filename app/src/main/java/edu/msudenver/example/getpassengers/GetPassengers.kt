@@ -44,11 +44,14 @@ class GetPassengers : AppCompatActivity() {
 
         if (first.isNotEmpty() && last.isNotEmpty() && phone.isNotEmpty()) {
             val newPass = Passenger(first, last, phone)
-            // Append a new line before adding the passenger to ensure it appears after the line
-            if (textPut.text.contains("-----------------------------")) {
-                textPut.append("\n")  // Add a new line after the separator
+            passList.add(newPass) // Add passenger to the list
+
+            // Ensure the text view has a newline after the separator before appending passengers
+            if (!textPut.text.contains("\n-----------------------------\n")) {
+                textPut.append("\n")  // Ensure a newline exists after the separator
             }
-            textPut.append(newPass.toString() + "\n")  // Add the new passenger
+
+            textPut.append(newPass.toString() + "\n")  // Append new passenger below the separator
 
             // Clear input fields
             textFirst.text.clear()
@@ -56,6 +59,7 @@ class GetPassengers : AppCompatActivity() {
             textPhone.text.clear()
         }
     }
+
 
 
     private fun backToMain() {
